@@ -2,7 +2,6 @@ package com.example.hotel.services;
 
 
 import com.example.hotel.dto.Response;
-import com.example.hotel.dto.RoomDTO;
 import com.example.hotel.model.Room;
 import com.example.hotel.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,11 +10,14 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class RoomService {
-
+    public RoomService(RoomRepository roomRepository) {
+        this.roomRepository = roomRepository;
+    }
 
     @Autowired
     private RoomRepository roomRepository;
@@ -55,5 +57,18 @@ public class RoomService {
 
     }
 
+    public List<Room> getAvailableRoomsByType(String roomType){
+
+        List<Room> rooms = roomRepository.findByRoomType(roomType);
+        return rooms;
+
+
+    }
+public Optional<Room> getRoomById(Long id){
+
+        Optional<Room> room = roomRepository.findById(id);
+        return room;
+
+}
 
 }

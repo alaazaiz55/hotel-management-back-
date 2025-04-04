@@ -2,6 +2,7 @@ package com.example.hotel.services;
 
 import com.example.hotel.dto.LoginRequest;
 import com.example.hotel.dto.Response;
+import com.example.hotel.dto.UserResponse;
 import com.example.hotel.model.User;
 import com.example.hotel.repository.UserRepository;
 import com.example.hotel.security.JWTUtils;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Optional;
 
 
 @Service
@@ -60,10 +62,12 @@ public class UserService {
 
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
+            System.out.println(loginRequest.getEmail());
             var user = userRepository.findByEmail(loginRequest.getEmail()).orElseThrow(() -> new IOException("user Not found"));
 
             var token = jwtUtils.generateToken(user);
             response.setStatusCode(200);
+            response.setId(user.getId());
             response.setToken(token);
             response.setRole(user.getRole());
             response.setExpirationTime("7 Days");
@@ -79,6 +83,16 @@ public class UserService {
             response.setMessage("Error Occurred During USer Login " + e.getMessage());
         }
         return response;
+    }
+
+    public UserResponse getUser(Long id){
+
+        Optional<User> userOptional =userRepository.findById(id);
+
+        User user = userOptional.get();
+        // Convert the User entity to a UserResponse DTO
+        return new UserResponse(user.getPhoneNumber(), user.getName(), user.getEmail());
+
     }
 
 }

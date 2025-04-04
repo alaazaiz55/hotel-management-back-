@@ -1,6 +1,7 @@
 package com.example.hotel.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -29,6 +30,8 @@ public class Room {
     @Column
     private byte[] roomPhoto;
     private String roomDescription;
+
+    @JsonIgnore
     @OneToMany(mappedBy = "room", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Booking> booking;
 

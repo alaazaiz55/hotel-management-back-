@@ -21,6 +21,15 @@ public class Response {
     private int statusCode;
     private String message;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    private Long id;
     private String token;
     private String role;
     private String expirationTime;

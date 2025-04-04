@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -45,5 +46,17 @@ public class RoomController {
 
 
     }
+    @GetMapping("/typeRoom/{roomType}")
+    public ResponseEntity<List<Room>> getTypeRoom(@PathVariable String roomType){
+        return ResponseEntity.ok(roomService.getAvailableRoomsByType(roomType));
+    }
+    
+    @GetMapping("/{roomID}")
+    public ResponseEntity<Optional<Room>> getRoomById(@PathVariable Long roomID){
+        return ResponseEntity.ok(roomService.getRoomById(roomID));
+
+    }
+
+
 
 }
