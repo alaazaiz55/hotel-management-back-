@@ -1,0 +1,66 @@
+.all-rooms {
+    max-width: 8000px;
+    margin: 1px auto;
+    padding: 1px;
+   
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
+    text-align: center;
+  
+    h2 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 15px;
+    }
+  
+    .all-room-filter-div {
+      display: flex;
+      gap: 9px;
+      margin: 2px ;
+    padding: 20px;
+    max-width: 770px;
+  
+      label {
+        width: 100%;
+        font-size: 17px;
+        font-weight: 90;
+        color: #555;
+      
+      }
+  
+      form {
+        width: 100%;
+        display: flex;
+  
+        select {
+          width: 60%;
+        
+          font-size: 16px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          background: white;
+          cursor: pointer;
+          transition: all 0.3s ease-in-out;
+  
+          &:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+          }
+        }
+      }
+    }
+  }
+
+  .all-room-filter-div {
+  //  position: fixed;
+    left: 0;
+    background-color: white;
+    width: 40vh;
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+  }
+  
+  
+  

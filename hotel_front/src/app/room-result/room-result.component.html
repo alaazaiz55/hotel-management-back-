@@ -1,0 +1,30 @@
+
+<section class="room-results">
+    <div  class="room-list">
+      <div *ngFor="let room of roomSearchResults" class="room-list-item">
+        <img class="room-list-item-image" [src]="'data:image/jpeg;base64,' + room.roomPhoto" [alt]="room.roomType" />
+        <div class="room-details">
+            
+          <h3>{{ room.roomType }}</h3>
+          <p>Price: ${{ room.roomPrice }} / night</p>
+          <p>Description: {{ room.roomDescription }}</p>
+        </div>
+  
+        <div class="book-now-div">
+          <button 
+            class="edit-room-button" 
+            *ngIf="isAdmin" 
+            (click)="navigateToRoom(room.id)">
+            Edit Room
+          </button>
+          <button 
+            class="book-now-button" 
+            *ngIf="!isAdmin" 
+            (click)="navigateToRoom(room.id)">
+            View/Book Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  

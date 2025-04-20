@@ -1,0 +1,18 @@
+<div class="all-rooms">
+    <h2>All Rooms</h2>
+    <div class="all-room-filter-div">
+      <label> Filter by Room Type:</label>
+      <form [formGroup]="roomForm">
+        <select formControlName="selectedRoomType" (change)="handleRoomTypeChange($event)">
+          <option *ngFor="let type of roomTypes" [value]="type">{{ type }}</option>
+        </select>
+      </form>
+    </div>
+  
+   <app-room-search (searchResult)="handleSearchResult($event)"></app-room-search>
+    <app-room-result [roomSearchResults]="currentRooms"></app-room-result>
+
+    
+    </div>
+
+    
